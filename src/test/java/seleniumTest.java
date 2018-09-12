@@ -14,9 +14,27 @@ public class seleniumTest {
     @Before
     public void setup()
     {
-        driver = new FirefoxDriver();
-        driver.get("https://www.google.fr");
+        String browser = System.getProperty("browser");
+        if(browser == null)
+        {
+            driver = new ChromeDriver();
+        }
+        else if(browser.equals("chrome"))
+        {
+            driver = new ChromeDriver();
+        }
+        else if(browser.equals("firefox"))
+        {
+            driver = new FirefoxDriver();
+        }
+        else
+        {
+            driver = new ChromeDriver();
+        }
+
+        driver.get("https://www.google.com");
     }
+
 
     @After
     public void quitBrowser()
@@ -46,7 +64,6 @@ public class seleniumTest {
        WebElement buttonrecherche = driver.findElement(By.className("lsb"));
        buttonrecherche.click();
 
-
-}
+       }
 }
 
